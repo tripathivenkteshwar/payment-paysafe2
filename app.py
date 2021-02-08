@@ -78,10 +78,10 @@ def payment_process():
     paymentHandleToken = data['paymentHandleToken']
     amount=data['amount']
     pay = pay_for_product(paymentHandleToken, amount, user_info.mer_ref, SECRET_KEY)
-    if pay["status"] == "COMPLETED":
+    if pay and pay["status"] == "COMPLETED":
         return {'status':"OK", 'data':pay}
     else:
-        return {'status':"NO", 'data':None}
+        return {'status':"NO", 'data':pay}
 
 
 if __name__ == '__main__':
